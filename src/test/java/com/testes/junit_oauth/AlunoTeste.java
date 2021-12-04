@@ -34,8 +34,8 @@ public class AlunoTeste {
 
     @BeforeEach
     public void inicio() {
-        JdbcTestUtils.deleteFromTables(jdbc, "aluno"); //excluir tabelas do banco antes do test
-        this.jdbc.execute("ALTER TABLE aluno AUTO_INCREMENT = 1");
+        JdbcTestUtils.deleteFromTables(jdbc, "aluno"); //excluir tabelas do banco antes do teste
+        this.jdbc.execute("ALTER TABLE aluno AUTO_INCREMENT = 1"); //iniciar auto incremento em 1 para o id
     }
 
     @Test

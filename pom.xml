@@ -56,6 +56,16 @@
 			<version>4.4.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency> <!-- Importação do spring security -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency> <!-- Importação do módulo oauth2 do spring security -->
+			<groupId>org.springframework.security.experimental</groupId>
+			<artifactId>spring-security-oauth2-authorization-server</artifactId>
+			<version>0.0.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
