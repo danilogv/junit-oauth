@@ -31,22 +31,27 @@ public class Seguranca extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder senha;
 
+    //Obtém o usuário de acesso
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService getUsuario() {
         InMemoryUserDetailsManager usuarioConfiguracao = new InMemoryUserDetailsManager();
         UserDetails usuario = User.withUsername("danilo").password(this.senha.encode("123")).authorities("read").build();
         usuarioConfiguracao.createUser(usuario);
         return usuarioConfiguracao;
     }
 
+    //Obtém a senha criptografada
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public PasswordEncoder getSenha() {
+        this.senha = new BCryptPasswordEncoder();
+        return this.senha;
     }
 
+    //Obtém o cliente de acesso
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient cliente = RegisteredClient
+    public RegisteredClientRepository getCliente() {
+        RegisteredClient cliente =
+            RegisteredClient
                 .withId(UUID.randomUUID().toString())
                 .clientId("cliente")
                 .clientSecret("123")
@@ -57,12 +62,15 @@ public class Seguranca extends WebSecurityConfigurerAdapter {
                 .build()
         ;
 
-        return new InMemoryRegisteredClientRepository(cliente);
+        RegisteredClientRepository registroCliente =  new InMemoryRegisteredClientRepository(cliente);
+        return registroCliente;
     }
 
+    //Obtém a chave de criptografia
     @Bean
-    public KeyManager keyManager() {
-        return new StaticKeyGeneratingKeyManager();
+    public KeyManager getChave() {
+        KeyManager chave = new StaticKeyGeneratingKeyManager();
+        return chave;
     }
 
 }
